@@ -26,7 +26,7 @@ class Usuario {
 
     public async cadastrar(dadosCadastrais: DadosCadastrais): Promise<number | false>{
         const existe = await this.verificarExistencia(dadosCadastrais.nome_usuario);
-        console.log(666, existe);
+
         if (existe) {
             return false;
         }
