@@ -4,11 +4,12 @@ import { ToDo, CriarToDo } from "../models/todo.model";
 
 class ToDoList {
     constructor() {
-        this.listaTarefas = this.listaTarefas.bind(this);
+        this.listarToDos = this.listarToDos.bind(this);
         this.cadastrarToDo = this.cadastrarToDo.bind(this);
+        this.buscarTodo = this.buscarTodo.bind(this);
     }
 
-    public async listaTarefas(req: Request, res: Response, next: NextFunction) {
+    public async listarToDos(req: Request, res: Response, next: NextFunction) {
         if (!req.usuario) return res.status(401).json({ message: "Unauthorized" });
 
         const usuario = req.usuario;
@@ -38,6 +39,21 @@ class ToDoList {
             const idRegistro = await toDoService.criarToDo(dadosToDo);
 
             return res.status(201).json({ message: 'ToDo criado com sucesso.', id_registro: idRegistro });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    public async buscarTodo(req: Request, res: Response, next: NextFunction) {
+        if (!req.usuario) return res.status(401).json({ message: "Unauthorized" });
+
+        const usuario = req.usuario;
+        const idToDo = parseInt(req.params.todo_id);
+
+        try {
+            const todo: ToDo | undefined = await toDoService.obterToDo(usuario.id, idToDo);
+
+            return res.status(200).json(todo);
         } catch (err) {
             next(err);
         }
