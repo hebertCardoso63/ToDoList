@@ -6,9 +6,14 @@ const router = Router();
 
 router
     .get(
-        '/lista-tarefas',
+        '/lista-ToDo',
         authenticate,
         toDoList.listaTarefas
+    )
+    .post(
+        '/cadastrar-ToDo',
+        authenticate,
+        toDoList.cadastrarToDo
     );
 
 export default router;
