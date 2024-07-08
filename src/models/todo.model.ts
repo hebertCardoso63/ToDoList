@@ -15,3 +15,9 @@ export interface CriarToDo {
     status: string;
     usuario_id: number;
 }
+
+export interface AtualizarToDo {
+    titulo?: string;
+    descricao?: string;
+    status?: string;
+}
