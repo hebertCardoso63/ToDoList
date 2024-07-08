@@ -6,12 +6,17 @@ const router = Router();
 
 router
     .get(
-        '/lista-ToDo',
+        '/todos/:todo_id',
         authenticate,
-        toDoList.listaTarefas
+        toDoList.buscarTodo
+    )
+    .get(
+        '/lista-todo',
+        authenticate,
+        toDoList.listarToDos
     )
     .post(
-        '/cadastrar-ToDo',
+        '/cadastrar-todo',
         authenticate,
         toDoList.cadastrarToDo
     );
