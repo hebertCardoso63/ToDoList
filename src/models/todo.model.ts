@@ -8,3 +8,10 @@ export interface ToDo {
     data_exclusao?: Date | null;
     usuario_id: number;
 }
+
+export interface CriarToDo {
+    titulo: string;
+    descricao?: string;
+    status: string;
+    usuario_id: number;
+}
