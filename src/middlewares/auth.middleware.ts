@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../utils/jwt';
+import { PayloadToken } from '../models/usuario.model';
 
 export function authenticate(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
@@ -11,10 +12,9 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
     const token = authHeader.split(' ')[1];
 
     try {
-        const user = verifyToken(token);
+        const usuario: PayloadToken = verifyToken(token);
 
-        Object.assign(req, { user });
-
+        Object.assign(req, { usuario });
         next();
     } catch (error) {
         res.status(401).send('Token inválido');
