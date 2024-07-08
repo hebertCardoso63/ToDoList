@@ -1,5 +1,8 @@
 import knex from "../factories/knex.factory";
-import { ToDo as ToDoModel } from "../models/todo.model";
+import {
+    ToDo as ToDoModel,
+    CriarToDo,
+ } from "../models/todo.model";
 
 class ToDo {
     public async obterListaTarefas(usuarioId: number): Promise<ToDoModel[]> {
@@ -9,6 +12,13 @@ class ToDo {
             .orderBy('t.id', 'desc');
 
         return listaAfazeres;
+    }
+
+    public async criarToDo(dadosInsert: CriarToDo): Promise<number> {
+        const [ idRegistro ] = await knex('todos')
+            .insert(dadosInsert, ['id']);
+
+        return idRegistro.id;
     }
 }
 
