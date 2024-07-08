@@ -19,6 +19,11 @@ router
         '/cadastrar-todo',
         authenticate,
         toDoList.cadastrarToDo
+    )
+    .patch(
+        '/todos/:todo_id',
+        authenticate,
+        toDoList.editarToDo,
     );
 
 export default router;
