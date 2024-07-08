@@ -2,6 +2,7 @@ import knex from "../factories/knex.factory";
 import {
     ToDo as ToDoModel,
     CriarToDo,
+    AtualizarToDo
  } from "../models/todo.model";
 
 class ToDo {
@@ -27,6 +28,17 @@ class ToDo {
     public async criarToDo(dadosInsert: CriarToDo): Promise<number> {
         const [ idRegistro ] = await knex('todos')
             .insert(dadosInsert, ['id']);
+
+        return idRegistro.id;
+    }
+
+    public async editarTodo(usuarioId: number, toDoId: number, dadosEdit: AtualizarToDo): Promise<number | undefined> {
+        const [idRegistro] = await knex({ t: 'todos' })
+            .where('t.id', toDoId)
+            .where('t.usuario_id', usuarioId)
+            .update(dadosEdit, ['id']);
+
+        if (!idRegistro) return undefined;
 
         return idRegistro.id;
     }
