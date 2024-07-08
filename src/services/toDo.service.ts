@@ -5,6 +5,16 @@ import {
  } from "../models/todo.model";
 
 class ToDo {
+    public async obterToDo(usuarioId: number, toDoId: number): Promise<ToDoModel | undefined> {
+        const todo: ToDoModel = await knex({ t: 'todos' })
+            .select(['*'])
+            .where('t.id', toDoId)
+            .where('t.usuario_id', usuarioId)
+            .first();
+
+        return todo;
+    }
+
     public async obterListaTarefas(usuarioId: number): Promise<ToDoModel[]> {
         const listaAfazeres = await knex({ t: 'todos' })
             .select(['*'])
