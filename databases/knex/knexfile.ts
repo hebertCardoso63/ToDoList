@@ -10,8 +10,6 @@ const {
     DB_NAME,
 } = process.env;
 
-console.log(88, DB_HOST, DB_USER, DB_PASS, DB_NAME)
-
 const config: { [key: string]: Knex.Config } = {
     development: {
         client: 'pg',
