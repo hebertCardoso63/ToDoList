@@ -1,15 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { toDo as toDoService } from "../services/toDo.service";
-
-
-const {
-    REQUEST,
-    COMMAND,
-    COMPONENT,
-    JWT_SECRET,
-    API_VERSION,
-    ACCESS_TOKEN,
-} = process.env;
+import { ToDo } from "../models/todo.model";
 
 class ToDoList {
     constructor() {
@@ -17,10 +8,14 @@ class ToDoList {
     }
 
     public async listaTarefas(req: Request, res: Response, next: NextFunction) {
+        if (!req.usuario) return res.status(401).json({ message: "Unauthorized" });
+
+        const usuario = req.usuario;
+
         try {
-            console.log(888);
-            const listaTarefas = await toDoService.obterListaTarefas();
-            res.status(200).json(listaTarefas);
+            const listaTarefas: ToDo[] = await toDoService.obterListaTarefas(usuario.id);
+
+            return res.status(200).json(listaTarefas);
         } catch (err) {
             next(err);
         }
