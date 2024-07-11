@@ -3,7 +3,7 @@ import {
     ToDo as ToDoModel,
     CriarToDo,
     AtualizarToDo
- } from "../models/todo.model";
+} from "../models/todo.model";
 
 class ToDo {
     public async obterToDo(usuarioId: number, toDoId: number): Promise<ToDoModel | undefined> {
@@ -20,13 +20,14 @@ class ToDo {
         const listaAfazeres = await knex({ t: 'todos' })
             .select(['*'])
             .where('t.usuario_id', usuarioId)
+            .whereNull('t.data_exclusao')
             .orderBy('t.id', 'desc');
 
         return listaAfazeres;
     }
 
     public async criarToDo(dadosInsert: CriarToDo): Promise<number> {
-        const [ idRegistro ] = await knex('todos')
+        const [idRegistro] = await knex('todos')
             .insert(dadosInsert, ['id']);
 
         return idRegistro.id;
@@ -37,6 +38,17 @@ class ToDo {
             .where('t.id', toDoId)
             .where('t.usuario_id', usuarioId)
             .update(dadosEdit, ['id']);
+
+        if (!idRegistro) return undefined;
+
+        return idRegistro.id;
+    }
+
+    public async excluirToDo(usuarioId: number, toDoId: number): Promise<number | undefined> {
+        const [idRegistro] = await knex({ t: 'todos' })
+            .where('t.id', toDoId)
+            .where('t.usuario_id', usuarioId)
+            .update({ data_exclusao: knex.fn.now() }, ['id']);
 
         if (!idRegistro) return undefined;
 
