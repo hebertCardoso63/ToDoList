@@ -81,6 +81,23 @@ class ToDoList {
             next(err);
         }
     }
+
+    public async excluirToDo(req: Request, res: Response, next: NextFunction) {
+        if (!req.usuario) return res.status(401).json({ message: "Unauthorized" });
+
+        const usuario = req.usuario;
+        const idToDo = parseInt(req.params.todo_id);
+
+        try {
+            const idRegistroAlterado: number | undefined = await toDoService.excluirToDo(usuario.id, idToDo);
+
+            if (!idRegistroAlterado) return res.status(400).json({ message: 'Registro não encontrado.' });
+
+            return res.status(200).json({ message: 'Registro excluido.', id: idRegistroAlterado});
+        } catch (err) {
+            next(err);
+        }
+    }
 }
 
 export const toDoList = new ToDoList();
