@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "7d77be62-36a5-4cb1-ae34-7972a4b8fd6f",
+		"name": "Lista de tarefas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27650520"
+	},
+	"item": [
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome_usuario\": \"hebert\",\n    \"senha\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/lista-tarefas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"lista-tarefas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome_usuario\": \"vanessa\",\n    \"senha\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Crud ToDo",
+			"item": [
+				{
+					"name": "Criar ToDo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZV91c3VhcmlvIjoiaGViZXJ0IiwiaWF0IjoxNzIwNDA5MTk0LCJleHAiOjE3MjA0MTI3OTR9.sRyUZCyBb90yHhaN_CmEIteZqWLUzv3mau2x_ft7TZI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"Faculdade\",\n    \"descricao\": \"Programação\",\n    \"status\": \"Pendente\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cadastrar-toDo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cadastrar-toDo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar ToDos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZV91c3VhcmlvIjoiaGViZXJ0IiwiaWF0IjoxNzIwNDA5MTk0LCJleHAiOjE3MjA0MTI3OTR9.sRyUZCyBb90yHhaN_CmEIteZqWLUzv3mau2x_ft7TZI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/lista-ToDo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"lista-ToDo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar ToDo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZV91c3VhcmlvIjoiaGViZXJ0IiwiaWF0IjoxNzIwNjcwNzY4LCJleHAiOjE3MjA2NzQzNjh9.WUfemtvmC5LanClbw0L0NVdVebEt6bloL2SJXoI6Ahs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/buscar/todos/:todo_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"buscar",
+								"todos",
+								":todo_id"
+							],
+							"variable": [
+								{
+									"key": "todo_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar ToDo",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZV91c3VhcmlvIjoiaGViZXJ0IiwiaWF0IjoxNzIwNDEzNTMzLCJleHAiOjE3MjA0MTcxMzN9.quN0T8k92Hc0f52ZiLmxlRDq8MoOK5QVJ6pjv5QH3sc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"Denovo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/todos/:todo_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"todos",
+								":todo_id"
+							],
+							"variable": [
+								{
+									"key": "todo_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ToDo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/excluir/todos/:todo_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"excluir",
+								"todos",
+								":todo_id"
+							],
+							"variable": [
+								{
+									"key": "todo_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
