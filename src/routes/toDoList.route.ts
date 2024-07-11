@@ -6,19 +6,23 @@ const router = Router();
 
 router
     .get(
-        '/todos/:todo_id',
+        '/buscar/todos/:todo_id',
         toDoList.buscarTodo
     )
     .get(
-        '/lista-todo',
+        '/listar/todos',
         toDoList.listarToDos
     )
     .post(
-        '/cadastrar-todo',
+        '/cadastrar/todo',
         toDoList.cadastrarToDo
     )
+    .delete(
+        '/excluir/todos/:todo_id',
+        toDoList.excluirToDo,
+    )
     .patch(
-        '/todos/:todo_id',
+        '/editar/todos/:todo_id',
         toDoList.editarToDo,
     );
 
