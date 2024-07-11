@@ -1,0 +1,9 @@
+schema:
+type: object
+properties:
+  message:
+    type: string
+    example: ToDo criado com sucesso
+  id_registro:
+    type: integer
+    example: 1

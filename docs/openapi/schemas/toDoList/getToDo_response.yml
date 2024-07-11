@@ -1,0 +1,27 @@
+schema:
+type: object
+properties:
+  id:
+    type: integer
+    example: ToDo excluido com sucesso
+  titulo:
+    type: string
+    example: "Trabalho"
+  descricao:
+    type: string
+    example: "Programação"
+  status:
+    type: string
+    example: "Planejamento"
+  data_criacao:
+    type: date-time
+    example: "2024-07-09T05:50:54.156Z"
+  data_atualizacao:
+    type: date-time
+    example: "2024-07-09T05:50:54.156Z"
+  data_exclusao:
+    type: date-time
+    example: null
+  id_usuario:
+    type: integer
+    example: 1

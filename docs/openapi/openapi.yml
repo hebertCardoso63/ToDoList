@@ -15,3 +15,15 @@ paths:
     $ref: ./paths/auth/register.yml
   /auth/login:
     $ref: ./paths/auth/login.yml
+
+  # ToDoList
+  /api/cadastrar/todo:
+    $ref: ./paths/toDoList/createToDo.yml
+  /api/listar/todos:
+   $ref: ./paths/toDoList/listToDo.yml
+  /api/editar/todos/:todo_id:
+    $ref: ./paths/toDoList/patchToDo.yml
+  /api/buscar/todos/:todo_id:
+    $ref: ./paths/toDoList/getToDo.yml
+  /api/excluir/todos/:todo_id:
+    $ref: ./paths/toDoList/deleteToDo.yml

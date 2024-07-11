@@ -1,0 +1,40 @@
+post:
+  tags:
+    - ToDo
+  summary: Cadastrar ToDo
+  parameters:
+    - name: Authorization
+      in: headers
+      schema: 
+        type: string
+      required: true
+      example: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZV91c3VhcmlvIjoiaGViZXJ0IiwiaWF0IjoxNzIwNTA0MjA1LCJleHAiOjE3MjA1MDc4MDV9.R2jjgxmcJ-HPr4QejLRfG8FkK-YaW8d9B0sDY4evKHk'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            titulo:
+              type: string
+              example: 'Trabalho de história'
+              required: true
+            descricao:
+              type: string
+              example: 'Resumo Segunda guerra mundial'
+              required: true
+            status:
+              type: string
+              example: 'Pendente'
+              required: true
+  responses:
+    "201":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/toDoList/createToDo_response.yml"
+    '401':
+      description: 'Unauthorized'
+    '400':
+      description: 'Bad request'

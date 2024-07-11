@@ -1,0 +1,29 @@
+schema:
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    titulo:
+      type: string
+      example: Faculdade
+    descricao:
+      type: string
+      example: Programação
+    status:
+      type: string
+      example: Andamento
+    data_criacao:
+      type: date-time
+      example: '2024-07-09T05:50:54.156Z'
+    data_atualizacao:
+      type: date-time
+      example: '2024-07-09T05:50:54.156Z'
+    data_exclusao:
+      type: date-time
+      example: Trabalho
+    usuario_id:
+      type: integer
+      example: 1
