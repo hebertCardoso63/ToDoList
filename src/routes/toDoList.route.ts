@@ -1,12 +1,17 @@
 import { Router } from 'express';
 import { toDoList } from '../controllers/toDoList.controller';
-import { authenticate } from '../middlewares/auth.middleware';
+import { 
+    validateCreateToDo,
+    validateUpdateToDo,
+    validateIdParam,
+ } from '../../src/validators/toDo.validator'
 
 const router = Router();
 
 router
     .get(
         '/buscar/todos/:todo_id',
+        validateIdParam,
         toDoList.buscarTodo
     )
     .get(
@@ -15,14 +20,18 @@ router
     )
     .post(
         '/cadastrar/todo',
+        validateCreateToDo,
         toDoList.cadastrarToDo
     )
     .delete(
         '/excluir/todos/:todo_id',
+        validateIdParam,
         toDoList.excluirToDo,
     )
     .patch(
         '/editar/todos/:todo_id',
+        validateIdParam,
+        validateUpdateToDo,
         toDoList.editarToDo,
     );
 
