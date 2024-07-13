@@ -5,6 +5,7 @@ import knexConfig from '../databases/knex/knexfile';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import path from 'path';
+import cors from 'cors';
 
 export class App {
     public server: express.Application;
@@ -18,6 +19,7 @@ export class App {
     }
 
     private middleware() {
+        this.server.use(cors());
         this.server.use(express.json());
     }
 
