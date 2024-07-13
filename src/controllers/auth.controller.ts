@@ -23,7 +23,7 @@ export async function register(req: Request, res: Response) {
         const idUsuario = await usuario.cadastrar(dadosCadastrais);
 
         if (!idUsuario) {
-            return res.status(401).send('Nome de usuário já existe');
+            return res.status(202).send('Nome de usuário já existe');
         }
 
         return res.status(201).send('Usuário registrado com sucesso');
@@ -43,7 +43,7 @@ export async function login(req: Request, res: Response) {
         const user: false | Usuario = await usuario.encontrarUsuario(nome_usuario);
 
         if (!user || !(await comparePassword(senha, user.senha))) {
-            return res.status(401).send('Credenciais inválidas');
+            return res.status(202).json({ mensagem: 'Credenciais inválidas', token: null });
         }
 
         const payload: PayloadToken = {
@@ -53,7 +53,7 @@ export async function login(req: Request, res: Response) {
 
         const token = generateToken(payload);
 
-        res.status(200).json({ token });
+        res.status(200).json({ mensagem: 'Login realizado com sucesso', token });
     } catch (error) {
         res.status(500).send('Erro ao fazer login');
     }
